@@ -26,12 +26,20 @@ apps:
 parts:
   lameta:
     plugin: nodejs
-    nodejs-version: 8.10.0
-    # nodejs-yarn-version: ???
+    nodejs-version: 8.10.0 # from .travis.yml
+    nodejs-yarn-version: 3.1.0 # from .yarn/releases
+    # nodejs-yarn-version: 1.22.11 # from .yarnrc
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
+    override-pull: |
+      # Install yarn.
+      curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      apt-get update
+      apt-get install yarn
+      snapcraftctl pull
     build-packages:
       - nodejs
-      - yarn
+      # - yarn # doesn't seem to work correctly (ERROR: There are no scenarios...)
     override-build: |
       yarn
       yarn dev
