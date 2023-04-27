@@ -26,6 +26,6 @@ apps:
 parts:
   lameta:
     plugin: npm
+    npm-include-node: true
     npm-node-version: 8.10.0
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
-    # source: https://github.com/onset/lameta/tree/v2.0.19-beta
