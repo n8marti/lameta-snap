@@ -1,7 +1,7 @@
 name: lameta-unofficial
 title: laMETA
 version: 2.0.19-beta
-base: core22
+base: core18 # highest available for nodejs/yarn
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
   Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
@@ -15,7 +15,7 @@ architectures:
   - amd64
 apps:
   lameta-unofficial:
-    extensions: [gnome]
+    extensions: [gnome-3-34]
     command: lameta
     plugs:
       - audio-playback
@@ -25,13 +25,6 @@ apps:
 
 parts:
   lameta:
-    plugin: npm
-    # npm-include-node: true
-    # npm-node-version: 8.10.0
-    build-snaps:
-      - node
+    nodejs-version: 8.10.0
+    # nodejs-yarn-version: ???
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
-    override-build: |
-      npm version
-      npm pkg set 'name="laMETA"'
-      snapcraft build
