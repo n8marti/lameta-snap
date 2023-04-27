@@ -29,6 +29,8 @@ parts:
     nodejs-version: 8.10.0
     # nodejs-yarn-version: ???
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
+    build-packages:
+      - curl
     override-build: |
       # Add yarn GPG key and repo.
       curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
