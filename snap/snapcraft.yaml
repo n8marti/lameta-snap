@@ -26,5 +26,5 @@ apps:
 parts:
   lameta:
     plugin: npm
-    # source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
-    source: https://github.com/onset/lameta/tree/v2.0.19-beta
+    source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
+    # source: https://github.com/onset/lameta/tree/v2.0.19-beta
