@@ -30,5 +30,6 @@ parts:
     npm-node-version: 8.10.0
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-build: |
+      npm version
       npm pkg set 'name="laMETA"'
       snapcraft build
