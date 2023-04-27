@@ -14,7 +14,7 @@ architectures:
   - amd64
 apps:
   lameta-unofficial:
-    extensions: [gnome-42-2204]
+    extensions: [gnome]
     command: lameta
     plugs:
       - audio-playback
