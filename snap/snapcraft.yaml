@@ -29,3 +29,7 @@ parts:
     nodejs-version: 8.10.0
     # nodejs-yarn-version: ???
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
+    override-build: |
+      yarn
+      yarn dev
+      yarn package
