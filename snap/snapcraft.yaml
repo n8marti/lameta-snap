@@ -38,6 +38,7 @@ parts:
       apt-get install yarn
       snapcraftctl pull
     build-packages:
+      - curl
       - nodejs
       # - yarn # doesn't seem to work correctly (ERROR: There are no scenarios...)
     override-build: |
