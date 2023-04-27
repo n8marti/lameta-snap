@@ -26,8 +26,10 @@ apps:
 parts:
   lameta:
     plugin: npm
-    npm-include-node: true
-    npm-node-version: 8.10.0
+    # npm-include-node: true
+    # npm-node-version: 8.10.0
+    build-snaps:
+      - node
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-build: |
       npm version
