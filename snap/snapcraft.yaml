@@ -54,7 +54,7 @@ parts:
       # Limit memory use if system has limited RAM.
       # mem_tot=$(free -m | grep Mem | awk '{print $2}')
       if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
-        export NODE_OPTIONS='--max-old-space-size=300'
+        export NODE_OPTIONS='--max-old-space-size=280'
       fi
       mv .yarnrc.yml{,.bak}
       # Install yarn.
