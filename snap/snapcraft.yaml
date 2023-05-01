@@ -57,5 +57,6 @@ parts:
       node -v
       npm -v
       yarn -v
+      yarn # installs packages in package.json
       yarn package-linux
 
