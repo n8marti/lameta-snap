@@ -1,6 +1,7 @@
 name: lameta-unofficial
 title: laMETA
-version: 2.0.19-beta
+version: "v2.0.19-beta"
+# version: "v2.1.2-alpha"
 # base: core18 # highest available for nodejs/yarn plugin
 base: core22 # for npm plugin
 summary: Lameta is a metadata tool to help with organising collections of files.
@@ -27,11 +28,8 @@ apps:
 
 parts:
   lameta:
-    pull-environment:
-      - LAMETA_VERSION: "v2.0.19-beta"
-      # - LAMETA_VERSION: "v2.1.2-alpha"
-    source: https://github.com/onset/lameta/archive/refs/tags/${LAMETA_VERSION}.tar.gz
-    
+    source: https://github.com/onset/lameta/archive/refs/tags/${SNAPCRAFT_PROJECT_VERSION}.tar.gz
+
     # For core18 (but doesn't install correct node version).
     # plugin: nodejs
     # Node version from package.json: engines.node
