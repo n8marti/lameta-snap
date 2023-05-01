@@ -42,6 +42,7 @@ parts:
     build-environment:
       - ARCH: "x64" # consider also "arm64"
       - NODEJS_FIXED_VERSION: "v16.20.0"
+      - NODE_OPTIONS: '--max-old-space-size=560' # limit memory usage
       - YARN_FIXED_VERSION: "v1.22.19"
     npm-include-node: true
     npm-node-version: $NODEJS_FIXED_VERSION
@@ -53,7 +54,7 @@ parts:
       mv .yarnrc{,.bak}
       mv .yarnrc.yml{,.bak}
       # Install yarn.
-      npm install --location=global yarn@$YARN_FIXED_VERSION --loglevel verbose
+      npm install --location=global yarn@$YARN_FIXED_VERSION
       node -v
       npm -v
       yarn -v
