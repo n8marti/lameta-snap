@@ -52,6 +52,9 @@ parts:
       # Install yarn.
       # npm install --location=global yarn --loglevel verbose # for newest version
       npm install --location=global yarn@$YARN_FIXED_VERSION --loglevel verbose # for specific version
+      node -v
+      npm -v
+      yarn -v
       yarn
       yarn dev
       yarn package
