@@ -26,19 +26,11 @@ apps:
 parts:
   lameta:
     plugin: nodejs
-    # nodejs-version: 8.10.0 # from .travis.yml # doesn't work
-    # Trying other node versions.
-    # https://github.com/onset/lameta/issues/17#issue-655240083
-    # https://nodejs.org/en/download/releases
-    # nodejs-version: 12.22.12
-    # https://github.com/onset/lameta/blob/4eb460e4a55babd0c6f4b9b3394ebce03b83917e/package.json#LL209C22-L209C28
-    # nodejs-version: 14.6.2 # version not found; bumping to newest v14
-    # nodejs-version: 14.21.3 # https://nodejs.org/dist/latest-v14.x/ # syntax error for "{"
-    # https://github.com/onset/lameta/blob/4eb460e4a55babd0c6f4b9b3394ebce03b83917e/package.json#LL405C17-L405C17
+    # Node version from package.json: engines.node
     nodejs-version: '16.20.0'
-    # nodejs-yarn-version: 3.1.0 # from .yarn/releases # doesn't exist: https://github.com/yarnpkg/yarn/releases/
     nodejs-yarn-version: v1.22.11 # from .yarnrc; needs 'v' in front to work
-    source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
+    # source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
+    source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-pull: |
       # # Install yarn.
       # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
