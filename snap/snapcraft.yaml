@@ -51,7 +51,7 @@ parts:
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
       # Install yarn.
       # npm install --location=global yarn --loglevel verbose # for newest version
-      npm install --location=global yarn@$YARN_FIXED_VERSION --loglevel verbose # for specific version
+      # npm install --location=global yarn@$YARN_FIXED_VERSION --loglevel verbose # for specific version
       node -v
       npm -v
       yarn -v
