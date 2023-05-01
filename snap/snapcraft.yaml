@@ -1,8 +1,8 @@
 name: lameta-unofficial
 title: laMETA
 version: 2.0.19-beta
-# base: core18 # highest available for nodejs/yarn pkgs
-base: core22
+# base: core18 # highest available for nodejs/yarn plugin
+base: core22 # for npm plugin
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
   Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
@@ -17,7 +17,7 @@ architectures:
 apps:
   lameta-unofficial:
     # extensions: [gnome-3-34] # core18
-    extensions: [gnome]
+    extensions: [gnome] # core22
     command: lameta
     plugs:
       - audio-playback
@@ -27,24 +27,32 @@ apps:
 
 parts:
   lameta:
-    plugin: nodejs
+    pull-environment:
+      - LAMETA_VERSION: "v2.0.19-beta"
+      # - LAMETA_VERSION: "v2.1.2-alpha"
+    source: https://github.com/onset/lameta/archive/refs/tags/${LAMETA_VERSION}.tar.gz
+    
+    # For core18 (but doesn't install correct node version).
+    # plugin: nodejs
     # Node version from package.json: engines.node
-    nodejs-version: '16.20.0'
-    nodejs-yarn-version: v1.22.19 # from .yarnrc; needs 'v' in front to work
-    # source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
-    source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
-    override-pull: |
-      # # Install yarn.
-      # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-      # echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-      # apt-get update
-      # apt-get install yarn
-      snapcraftctl pull
-    build-packages:
-      - curl
-      # - nodejs # doesn't install correct version
-      # - yarn # doesn't seem to work correctly (ERROR: There are no scenarios...)
+    # nodejs-version: '16.20.0'
+    # nodejs-yarn-version: v1.22.19 # from .yarnrc; needs 'v' in front to work
+
+    # For core22
+    # ref: https://github.com/alexmurray/vscode-html-languageserver-snap/blob/2541b13917ce664cf6e6bbbdfe27897416909657/snapcraft.yaml#L18
+    plugin: npm
+    build-environment:
+      - ARCH: "amd64"
+      - NODEJS_FIXED_VERSION: "v16.20.0"
+      - YARN_FIXED_VERSION: "v1.22.19"
+    npm-node-version: $NODEJS_FIXED_VERSION
     override-build: |
+      # Install correct version of node.
+      curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
+      # Install yarn.
+      npm install --global yarn # for newest version
+      # npm install --global yarn@$YARN_FIXED_VERSION # for specific version
       yarn
       yarn dev
       yarn package
+
