@@ -32,7 +32,8 @@ parts:
     # https://nodejs.org/en/download/releases
     # nodejs-version: 12.22.12
     # https://github.com/onset/lameta/blob/4eb460e4a55babd0c6f4b9b3394ebce03b83917e/package.json#LL209C22-L209C28
-    nodejs-version: 14.6.2
+    # nodejs-version: 14.6.2 # version not found; bumping to 14.7.0
+    nodejs-version: 14.7.0
     # nodejs-yarn-version: 3.1.0 # from .yarn/releases # doesn't exist: https://github.com/yarnpkg/yarn/releases/
     nodejs-yarn-version: v1.22.11 # from .yarnrc; needs 'v' in front to work
     source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
