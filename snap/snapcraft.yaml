@@ -49,7 +49,7 @@ parts:
       curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
       # Install yarn.
-      npm install --global yarn # for newest version
+      npm install --global yarn --loglevel verbose # for newest version
       # npm install --global yarn@$YARN_FIXED_VERSION # for specific version
       yarn
       yarn dev
