@@ -35,7 +35,7 @@ parts:
     # nodejs-version: 14.6.2 # version not found; bumping to newest v14
     # nodejs-version: 14.21.3 # https://nodejs.org/dist/latest-v14.x/ # syntax error for "{"
     # https://github.com/onset/lameta/blob/4eb460e4a55babd0c6f4b9b3394ebce03b83917e/package.json#LL405C17-L405C17
-    nodejs-version: 16
+    nodejs-version: '16'
     # nodejs-yarn-version: 3.1.0 # from .yarn/releases # doesn't exist: https://github.com/yarnpkg/yarn/releases/
     nodejs-yarn-version: v1.22.11 # from .yarnrc; needs 'v' in front to work
     source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
