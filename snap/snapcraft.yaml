@@ -1,7 +1,8 @@
 name: lameta-unofficial
 title: laMETA
 version: 2.0.19-beta
-base: core18 # highest available for nodejs/yarn
+# base: core18 # highest available for nodejs/yarn pkgs
+base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
   Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
@@ -15,7 +16,8 @@ architectures:
   - amd64
 apps:
   lameta-unofficial:
-    extensions: [gnome-3-34]
+    # extensions: [gnome-3-34] # core18
+    extensions: [gnome]
     command: lameta
     plugs:
       - audio-playback
