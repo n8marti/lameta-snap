@@ -40,7 +40,7 @@ parts:
       snapcraftctl pull
     build-packages:
       - curl
-      - nodejs
+      # - nodejs # doesn't install correct version
       # - yarn # doesn't seem to work correctly (ERROR: There are no scenarios...)
     override-build: |
       yarn
