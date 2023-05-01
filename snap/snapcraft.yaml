@@ -31,8 +31,8 @@ parts:
     # https://github.com/onset/lameta/issues/17#issue-655240083
     # https://nodejs.org/en/download/releases
     nodejs-version: 12.22.12
-    nodejs-yarn-version: 3.1.0 # from .yarn/releases
-    # nodejs-yarn-version: 1.22.11 # from .yarnrc
+    # nodejs-yarn-version: 3.1.0 # from .yarn/releases # doesn't exist: https://github.com/yarnpkg/yarn/releases/
+    nodejs-yarn-version: 1.22.11 # from .yarnrc
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-pull: |
       # Install yarn.
