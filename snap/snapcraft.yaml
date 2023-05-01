@@ -26,7 +26,11 @@ apps:
 parts:
   lameta:
     plugin: nodejs
-    nodejs-version: 8.10.0 # from .travis.yml
+    # nodejs-version: 8.10.0 # from .travis.yml # doesn't work
+    # Trying other node versions.
+    # https://github.com/onset/lameta/issues/17#issue-655240083
+    # https://nodejs.org/en/download/releases
+    nodejs-version: 12.22.12
     nodejs-yarn-version: 3.1.0 # from .yarn/releases
     # nodejs-yarn-version: 1.22.11 # from .yarnrc
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
