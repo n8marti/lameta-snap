@@ -28,7 +28,7 @@ parts:
     plugin: nodejs
     # Node version from package.json: engines.node
     nodejs-version: '16.20.0'
-    nodejs-yarn-version: v1.22.11 # from .yarnrc; needs 'v' in front to work
+    nodejs-yarn-version: v1.22.19 # from .yarnrc; needs 'v' in front to work
     # source: https://github.com/onset/lameta/archive/refs/tags/v2.1.2-alpha.tar.gz
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-pull: |
