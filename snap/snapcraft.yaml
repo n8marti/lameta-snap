@@ -32,7 +32,7 @@ parts:
     # https://nodejs.org/en/download/releases
     nodejs-version: 12.22.12
     # nodejs-yarn-version: 3.1.0 # from .yarn/releases # doesn't exist: https://github.com/yarnpkg/yarn/releases/
-    nodejs-yarn-version: 1.22.11 # from .yarnrc
+    nodejs-yarn-version: v1.22.11 # from .yarnrc; needs 'v' in front to work
     source: https://github.com/onset/lameta/archive/refs/tags/v2.0.19-beta.tar.gz
     override-pull: |
       # Install yarn.
