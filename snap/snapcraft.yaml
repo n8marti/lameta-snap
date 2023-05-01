@@ -40,13 +40,14 @@ parts:
     # ref: https://github.com/alexmurray/vscode-html-languageserver-snap/blob/2541b13917ce664cf6e6bbbdfe27897416909657/snapcraft.yaml#L18
     plugin: npm
     build-environment:
-      - ARCH: "amd64"
+      - ARCH: "x64" # consider also "arm64"
       - NODEJS_FIXED_VERSION: "v16.20.0"
       - YARN_FIXED_VERSION: "v1.22.19"
     npm-node-version: $NODEJS_FIXED_VERSION
     override-build: |
       # Install correct version of node.
-      curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
+      curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
+        | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
       # Install yarn.
       npm install --global yarn # for newest version
       # npm install --global yarn@$YARN_FIXED_VERSION # for specific version
