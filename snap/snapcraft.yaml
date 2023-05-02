@@ -52,6 +52,7 @@ parts:
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
       # Ignore (rename) .yarnrc & .yarnrc.yml to force use of downloaded version of yarn.
       mv .yarnrc{,.bak}
+      # NOTE: Relying on build system memory limit instead of the following.
       # Limit memory use if system has limited RAM.
       # mem_tot=$(free -m | grep Mem | awk '{print $2}')
       # if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
@@ -63,6 +64,7 @@ parts:
       node -v
       npm -v
       yarn -v
-      yarn install
+      # yarn install
+      npm install
       yarn package-linux
 
