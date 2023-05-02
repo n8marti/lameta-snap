@@ -1,7 +1,7 @@
 name: lameta-unofficial
 title: laMETA
-# version: "v2.0.19-beta"
-version: "v2.1.2-alpha"
+version: "v2.0.19-beta"
+# version: "v2.1.2-alpha"
 # base: core18 # highest available for nodejs/yarn plugin
 base: core22 # for npm plugin
 summary: Lameta is a metadata tool to help with organising collections of files.
