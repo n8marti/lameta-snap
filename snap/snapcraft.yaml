@@ -46,6 +46,8 @@ parts:
       - YARN_FIXED_VERSION: "v1.22.19"
     npm-include-node: true
     npm-node-version: $NODEJS_FIXED_VERSION
+    build-packages:
+      - jq
     override-build: |
       # Install correct version of node.
       curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
@@ -64,8 +66,10 @@ parts:
       node -v
       npm -v
       yarn -v
-      # yarn install
-      node --max-semi-space-size=1 $(which yarn) install
-      # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # also try --force b/c of dependency disagreements
+      # Install deps one at a time. (https://github.com/npm/npm/issues/9884#issuecomment-239668802)
+      jq -r '.dependencies|to_entries[] | .key + "@" + .value' < packages.json | xargs yarn install
+      # yarn install # OOM failure
+      # node --max-semi-space-size=1 $(which yarn) install # OOM failure
+      # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # OOM failure
       yarn package-linux
 
