@@ -71,8 +71,8 @@ parts:
       # Reverse deps (hoping to have smaller ones at the end!).
       rdeps=( $(printf '%s\n' "${deps[@]}" | tac | tr '\n' ' '; echo) )
       for dep in "${rdeps[@]}"; do
-        # node --max-semi-space-size=1 $(which yarn) add $dep
-        node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps $dep
+        node --max-semi-space-size=1 $(which yarn) add $dep
+        # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps $dep
       done
       # yarn install # OOM failure
       # node --max-semi-space-size=1 $(which yarn) install # OOM failure
