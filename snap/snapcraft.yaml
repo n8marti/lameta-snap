@@ -43,6 +43,7 @@ parts:
       - ARCH: "x64" # consider also "arm64"
       - NODE_ENV: "production"
       - NODEJS_FIXED_VERSION: "v16.20.0"
+      # - NPM_CONFIG_OMIT: 'dev' # when using npm instead of yarn
       - YARN_FIXED_VERSION: "v1.22.19"
     npm-include-node: true
     npm-node-version: $NODEJS_FIXED_VERSION
@@ -54,10 +55,10 @@ parts:
       mv .yarnrc{,.bak}
       # NOTE: Relying on build system memory limit instead of the following.
       # Limit memory use if system has limited RAM.
-      # mem_tot=$(free -m | grep Mem | awk '{print $2}')
-      # if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
-      #   export NODE_OPTIONS='--max-old-space-size=200'
-      # fi
+      mem_tot=$(free -m | grep Mem | awk '{print $2}')
+      if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
+        export NODE_OPTIONS='--max-old-space-size=300'
+      fi
       mv .yarnrc.yml{,.bak}
       # Install yarn.
       npm install --location=global yarn@$YARN_FIXED_VERSION
@@ -65,6 +66,6 @@ parts:
       npm -v
       yarn -v
       # yarn install
-      npm install --force # or --legacy-peer-deps b/c of dependency disagreements
+      npm install --legacy-peer-deps --omit=dev --omit=optional # also try --force b/c of dependency disagreements
       yarn package-linux
 
