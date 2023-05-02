@@ -67,15 +67,15 @@ parts:
       npm -v
       yarn -v
       # Install deps one at a time. (https://github.com/npm/npm/issues/9884#issuecomment-239668802)
-      deps=( $(jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json) )
+      # deps=( $(jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json) )
       # Reverse deps (hoping to have smaller ones at the end!).
-      rdeps=( $(printf '%s\n' "${deps[@]}" | tac | tr '\n' ' '; echo) )
-      for dep in "${rdeps[@]}"; do
-        node --max-semi-space-size=1 $(which yarn) add $dep
-        # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps $dep
-      done
+      # rdeps=( $(printf '%s\n' "${deps[@]}" | tac | tr '\n' ' '; echo) )
+      # for dep in "${rdeps[@]}"; do
+      #   node --max-semi-space-size=1 $(which yarn) add $dep
+      #   # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps $dep
+      # done
       # yarn install # OOM failure
-      # node --max-semi-space-size=1 $(which yarn) install # OOM failure
+      node --max-semi-space-size=1 $(which yarn) install --ignore-optional # OOM failure
       # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # OOM failure
       yarn package-linux
 
