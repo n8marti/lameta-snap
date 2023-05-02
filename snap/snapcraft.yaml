@@ -67,7 +67,7 @@ parts:
       npm -v
       yarn -v
       # Install deps one at a time. (https://github.com/npm/npm/issues/9884#issuecomment-239668802)
-      jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json | xargs yarn install
+      jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json | xargs yarn add
       # yarn install # OOM failure
       # node --max-semi-space-size=1 $(which yarn) install # OOM failure
       # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # OOM failure
