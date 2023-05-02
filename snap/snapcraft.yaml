@@ -70,7 +70,7 @@ parts:
       deps=( $(jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json) )
       for dep in "${deps[@]}"; do
         # node --max-semi-space-size=1 $(which yarn) add $dep
-        node --max-semi-space-size=1 $(which npm) install $dep
+        node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps $dep
       done
       # yarn install # OOM failure
       # node --max-semi-space-size=1 $(which yarn) install # OOM failure
