@@ -65,6 +65,7 @@ parts:
       npm -v
       yarn -v
       # yarn install
-      node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # also try --force b/c of dependency disagreements
+      node --max-semi-space-size=1 $(which yarn) install
+      # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional # also try --force b/c of dependency disagreements
       yarn package-linux
 
