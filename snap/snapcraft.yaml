@@ -65,6 +65,6 @@ parts:
       npm -v
       yarn -v
       # yarn install
-      npm install
+      npm install --force # or --legacy-peer-deps b/c of dependency disagreements
       yarn package-linux
 
