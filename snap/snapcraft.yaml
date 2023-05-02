@@ -69,7 +69,7 @@ parts:
       # Install deps one at a time. (https://github.com/npm/npm/issues/9884#issuecomment-239668802)
       deps=( $(jq -r '.dependencies|to_entries[] | .key + "@" + .value' < package.json) )
       for dep in "${deps[@]}"; do
-        yarn add $dep
+        node --max-semi-space-size=1 $(which yarn) add $dep
       done
       # yarn install # OOM failure
       # node --max-semi-space-size=1 $(which yarn) install # OOM failure
