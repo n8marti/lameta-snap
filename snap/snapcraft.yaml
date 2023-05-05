@@ -50,13 +50,13 @@ parts:
       - jq
     override-build: |
       # Edit .yarnrc.yml to properly find included yarn.
-      sed -ri "s@(yarnPath: .yarn/releases/yarn-)[\.0-9]+(cjs)@\1sources.\2@" .yarnrc.yml
+      # sed -ri "s@(yarnPath: .yarn/releases/yarn-)[\.0-9]+(cjs)@\1sources.\2@" .yarnrc.yml
       # Install correct version of node.
       curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
       # Ignore (rename) .yarnrc & .yarnrc.yml to force use of downloaded version of yarn.
-      # mv .yarnrc{,.bak} # try keeping this file to avoid fixedVersion error
-      # mv .yarnrc.yml{,.bak} # keep this file to use included yarn
+      mv .yarnrc{,.bak} # try keeping this file to avoid fixedVersion error
+      mv .yarnrc.yml{,.bak} # keep this file to use included yarn
       # NOTE: Relying on build system memory limit instead of the following.
       # Limit memory use if system has limited RAM.
       # mem_tot=$(free -m | grep Mem | awk '{print $2}')
@@ -64,7 +64,8 @@ parts:
       #   export NODE_OPTIONS='--heapsnapshot-near-heap-limit=1 --max-old-space-size=200'
       # fi
       # Install yarn.
-      npm install --location=global yarn@$YARN_FIXED_VERSION
+      # npm install --location=global yarn@$YARN_FIXED_VERSION
+      npm install --location=global yarn
       node -v
       npm -v
       yarn -v
