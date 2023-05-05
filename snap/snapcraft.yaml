@@ -56,10 +56,10 @@ parts:
       mv .yarnrc{,.bak}
       # NOTE: Relying on build system memory limit instead of the following.
       # Limit memory use if system has limited RAM.
-      mem_tot=$(free -m | grep Mem | awk '{print $2}')
-      if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
-        export NODE_OPTIONS='--heapsnapshot-near-heap-limit=1 --max-old-space-size=200'
-      fi
+      # mem_tot=$(free -m | grep Mem | awk '{print $2}')
+      # if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
+      #   export NODE_OPTIONS='--heapsnapshot-near-heap-limit=1 --max-old-space-size=200'
+      # fi
       mv .yarnrc.yml{,.bak}
       # Install yarn.
       npm install --location=global yarn@$YARN_FIXED_VERSION
