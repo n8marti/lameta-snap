@@ -69,7 +69,7 @@ parts:
       npm -v
       yarn -v
       # Install node packages.
-      yarn install --ignore-optional
+      yarn install # --ignore-optional # not available in "modern" (>1.x) yarn
       # node --max-semi-space-size=1 $(which yarn) install --ignore-optional
       # node --max-semi-space-size=1 $(which npm) install --legacy-peer-deps --omit=dev --omit=optional
       yarn package-linux
