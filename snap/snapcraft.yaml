@@ -68,8 +68,8 @@ parts:
       # Install yarn.
       # npm install --location=global yarn@$YARN_FIXED_VERSION
       npm install --location=global yarn
-      # corepack enable
-      # corepack prepare yarn@stable --activate
+      corepack enable
+      corepack prepare yarn@stable --activate
       # yarn set version from sources
       node -v
       npm -v
