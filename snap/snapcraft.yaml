@@ -68,6 +68,7 @@ parts:
       # Install yarn.
       # npm install --location=global yarn@$YARN_FIXED_VERSION
       npm install --location=global yarn
+      yarn set version from sources
       node -v
       npm -v
       yarn -v
