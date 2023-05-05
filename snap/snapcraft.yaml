@@ -49,10 +49,10 @@ parts:
     build-packages:
       - jq
     override-build: |
-      # Rename included yarn to be non-version-specific.
-      mv .yarn/releases/yarn-{3.1.0,sources}.cjs
-      # Edit .yarnrc.yml to find renamed yarn.
-      sed -ri "s@(yarnPath: .yarn/releases/yarn-)[\.0-9]+(cjs)@\1sources.\2@" .yarnrc.yml
+      # # Rename included yarn to be non-version-specific.
+      # mv .yarn/releases/yarn-{3.1.0,sources}.cjs
+      # # Edit .yarnrc.yml to find renamed yarn.
+      # sed -ri "s@(yarnPath: .yarn/releases/yarn-)[\.0-9]+(cjs)@\1sources.\2@" .yarnrc.yml
       # Install correct version of node.
       curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
