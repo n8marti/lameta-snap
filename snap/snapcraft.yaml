@@ -49,6 +49,8 @@ parts:
     build-packages:
       - jq
     override-build: |
+      # Edit .yarnrc.yml to properly find included yarn.
+      sed -ri "s@(yarnPath: )(.yarn/releases/yarn-3.1.0.cjs)@\1${SNAPCRAFT_PART_BUILD}/\2@" .yarnrc.yml
       # Install correct version of node.
       curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
         | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
