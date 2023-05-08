@@ -34,6 +34,8 @@ parts:
   lameta:
     source: https://github.com/onset/lameta/archive/refs/tags/${SNAPCRAFT_PROJECT_VERSION}.tar.gz
     plugin: dump
+    build-packages:
+      - curl
     build-environment:
       - ARCH: "x64" # consider also "arm64"
       - NODE_ENV: "production"
