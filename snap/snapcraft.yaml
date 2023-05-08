@@ -43,6 +43,18 @@ parts:
       - NODE_ENV: "production"
       - NODEJS_FIXED_VERSION: "v16.20.0"
     override-build: |
+      # Bugfix: https://forum.snapcraft.io/t/problems-with-remote-build/24373/2
+      if [ -z ${http_proxy+x} ]; then
+        echo "Not using proxy"
+      else
+        echo "Using proxy"
+        export ELECTRON_GET_USE_PROXY=1
+        export GLOBAL_AGENT_HTTP_PROXY="${http_proxy}"
+        export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
+        npm config set proxy $http_proxy
+        npm config set https-proxy $https_proxy
+      fi
+
       # Add logFilters to .yarnrc.yml.
       echo -e 'logFilters:\n  - code: "YN0013"\n    level: "discard"' >> .yarnrc.yml
 
