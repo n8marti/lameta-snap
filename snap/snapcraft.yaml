@@ -53,12 +53,14 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
         npm config set proxy $http_proxy
         npm config set https-proxy $https_proxy
-        # yarn config set proxy $http_proxy
-        yarn config set https-proxy $https_proxy
+        # yarn config set proxy $http_proxy # doesn't exist?
+        # yarn config set https-proxy $https_proxy # doesn't exist?
       fi
 
       # Add logFilters to .yarnrc.yml.
       echo -e 'logFilters:\n  - code: "YN0013"\n    level: "discard"' >> .yarnrc.yml
+      echo -e "httpProxy: \"$http_proxy\"" >> .yarnrc.yml
+      echo -e "httpsProxy: \"$http_proxy\"" >> .yarnrc.yml
 
       # # Edit package.json to only build "dir" pkg for linux. (not needed if using "electron-builder --linux dir" below)
       # data=$(jq '.build.linux.target = ["dir"]' package.json)
