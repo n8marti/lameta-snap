@@ -83,7 +83,7 @@ parts:
       # Install node packages.
       yarn install
       npm run build-without-test
-      ./node_modules/.bin/elecron-builder --linux dir
+      node ./node_modules/.bin/elecron-builder --linux dir
 
       # Copy over the linux-unpacked directory contents.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
