@@ -53,7 +53,7 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
         npm config set proxy $http_proxy
         npm config set https-proxy $https_proxy
-        yarn config set proxy $http_proxy
+        # yarn config set proxy $http_proxy
         yarn config set https-proxy $https_proxy
       fi
 
