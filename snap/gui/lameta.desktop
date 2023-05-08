@@ -1,0 +1,9 @@
+Name=laMETA
+Comment=help with organising collections of files
+Exec=lameta
+Icon=${SNAP}/meta/gui/lameta.png
+Type=Application
+Categories=Application;Education;
+Terminal=false
+StartupNotify=false
+Keywords=SayMore;lameta;
