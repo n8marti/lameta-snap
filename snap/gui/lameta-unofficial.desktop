@@ -1,3 +1,4 @@
+[Desktop Entry]
 Name=laMETA
 Comment=help with organising collections of files
 Exec=lameta-unofficial
@@ -6,4 +7,5 @@ Type=Application
 Categories=Application;Education;
 Terminal=false
 StartupNotify=false
+StartupWMClass=laMETA
 Keywords=SayMore;lameta;
