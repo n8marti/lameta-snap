@@ -16,7 +16,7 @@ description: |
 contact: https://github.com/n8marti/lameta-snap/issues
 issues: https://github.com/n8marti/lameta-snap/issues
 source-code: https://github.com/onset/lameta/releases
-grade: devel # stable
+grade: stable # devel
 confinement: strict # devmode
 icon: snap/gui/lameta-unofficial.png
 compression: lzo
