@@ -5,13 +5,19 @@ version: "v2.1.2-alpha"
 base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
+  This is an UNOFFICIAL build of laMETA.
+
   Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
 
   Lameta greatly simplifies management of collections and makes the archiving process straightforward and painless for field workers. 
 
   Hatton, John, Gary Holton, Mandana Seyfeddinipur, Nick Thieberger. 2021. Lameta [software] https://github.com/onset/laMETA/releases
-grade: devel
-confinement: devmode
+contact: https://github.com/n8marti/lameta-snap/issues
+issues: https://github.com/n8marti/lameta-snap/issues
+source-code: https://github.com/onset/lameta/releases
+grade: devel # stable
+confinement: strict
+icon: snap/gui/lameta-unofficial.png
 architectures:
   - amd64
 
@@ -21,11 +27,15 @@ apps:
     command: opt/lameta/lameta --no-sandbox
     plugs:
       - audio-playback
-      - browser-support
-      - home
+      # - browser-support
+      # - dbus
+      - desktop
+      - desktop-legacy
+      # - home
+      # - mount-observe
       - network
-      - removable-media
-      - udisks2
+      # - removable-media
+      # - udisks2
       - wayland
       - x11
 
