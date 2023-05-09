@@ -1,7 +1,7 @@
 Name=laMETA
 Comment=help with organising collections of files
 Exec=lameta-unofficial
-Icon=${SNAP}/meta/gui/lameta.png
+Icon=${SNAP}/meta/gui/lameta-unofficial.png
 Type=Application
 Categories=Application;Education;
 Terminal=false
