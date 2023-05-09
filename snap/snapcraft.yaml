@@ -87,4 +87,4 @@ parts:
 
       # Copy over the linux-unpacked directory contents.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
-      cp -ar ./release/linux-unpacked/lameta $SNAPCRAFT_PART_INSTALL/opt/lameta/
+      cp -ar ./release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/opt/lameta/
