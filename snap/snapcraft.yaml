@@ -2,8 +2,7 @@ name: lameta-unofficial
 title: laMETA
 # version: "v2.0.19-beta"
 version: "v2.1.2-alpha"
-# base: core18 # highest available for nodejs/yarn plugin
-base: core22 # for npm plugin
+base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
   Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
@@ -41,7 +40,6 @@ parts:
     build-environment:
       - ARCH: "x64" # consider also "arm64"
       - NODE_ENV: "production"
-      - NODEJS_FIXED_VERSION: "v16.20.0"
     override-build: |
       # Bugfix: https://forum.snapcraft.io/t/problems-with-remote-build/24373/2
       if [ -z ${http_proxy+x} ]; then
@@ -53,35 +51,17 @@ parts:
         export GLOBAL_AGENT_HTTPS_PROXY="${http_proxy}"
         npm config set proxy $http_proxy
         npm config set https-proxy $https_proxy
-        # yarn config set proxy $http_proxy # doesn't exist?
-        # yarn config set https-proxy $https_proxy # doesn't exist?
       fi
 
-      # Add logFilters to .yarnrc.yml.
+      # Make changes to .yarnrc.yml.
       echo -e 'logFilters:\n  - code: "YN0013"\n    level: "discard"' >> .yarnrc.yml
       echo -e "httpProxy: \"$http_proxy\"" >> .yarnrc.yml
       echo -e "httpsProxy: \"$http_proxy\"" >> .yarnrc.yml
 
-      # # Edit package.json to only build "dir" pkg for linux. (not needed if using "electron-builder --linux dir" below)
-      # data=$(jq '.build.linux.target = ["dir"]' package.json)
-      # echo -E "$data" > package.json
-
-      # Install correct version of node.
-      # curl -s https://nodejs.org/dist/"${NODEJS_FIXED_VERSION}"/node-"${NODEJS_FIXED_VERSION}"-linux-$ARCH.tar.gz \
-      #   | tar xzf - -C "$SNAPCRAFT_PART_INSTALL" --strip-components=1
-
-      # NOTE: Relying on build system memory limit instead of the following.
-      # Limit memory use if system has limited RAM.
-      # mem_tot=$(free -m | grep Mem | awk '{print $2}')
-      # if [[ $(free -m | grep ^Mem | awk '{print $2}') -lt 1000 ]]; then
-      #   export NODE_OPTIONS='--heapsnapshot-near-heap-limit=1 --max-old-space-size=200'
-      # fi
-
-      # Install yarn.
+      # Install yarn & packages.
       npm install --location=global yarn
-
-      # Install node packages.
       yarn install
+      # Build app.
       npm run build-without-test
       ./node_modules/.bin/electron-builder --linux dir
 
