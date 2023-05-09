@@ -18,13 +18,14 @@ source-code: https://github.com/onset/lameta/releases
 grade: devel # stable
 confinement: strict
 icon: snap/gui/lameta-unofficial.png
+compression: lzo
 architectures:
   - amd64
 
 apps:
   lameta-unofficial:
     extensions: [gnome]
-    command: opt/lameta/lameta --no-sandbox
+    command: opt/lameta/lameta --no-sandbox --disable-seccomp-filter-sandbox
     plugs:
       - audio-playback
       # - browser-support
@@ -35,9 +36,15 @@ apps:
       # - mount-observe
       - network
       # - removable-media
+      - shmem
       # - udisks2
       - wayland
       - x11
+
+plugs:
+  shmem:
+    interface: shared-memory
+    private: true
 
 parts:
   lameta:
@@ -51,6 +58,7 @@ parts:
       - ARCH: "x64" # consider also "arm64"
       - NODE_ENV: "production"
     override-build: |
+      # Ref: https://forum.snapcraft.io/t/how-to-delegate-package-creation-in-snapcraft-yaml-to-electron-builder/28097/10
       # Bugfix: https://forum.snapcraft.io/t/problems-with-remote-build/24373/2
       if [ -z ${http_proxy+x} ]; then
         echo "Not using proxy"
