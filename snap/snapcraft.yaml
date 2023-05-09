@@ -1,5 +1,6 @@
 name: lameta-unofficial
 title: laMETA
+license: MIT
 # version: "v2.0.19-beta"
 version: "v2.1.2-alpha"
 base: core22
@@ -15,7 +16,7 @@ description: |
 contact: https://github.com/n8marti/lameta-snap/issues
 issues: https://github.com/n8marti/lameta-snap/issues
 source-code: https://github.com/onset/lameta/releases
-grade: stable # devel
+grade: devel # stable
 confinement: strict # devmode
 icon: snap/gui/lameta-unofficial.png
 compression: lzo
