@@ -15,13 +15,17 @@ Until a stable build is published, you can install the most recent "edge" (alpha
 ### beta release
 ```bash
 snap install lameta-unofficial --beta
-# or you might need to use sudo privileges:
+```
+Or you might need to use sudo privileges:
+```bash
 sudo snap install lameta-unofficial --beta
 ```
 
 ### alpha release
 ```bash
 snap install lameta-unofficial --edge
-# or
+```
+Or, with sudo:
+```bash
 sudo snap install lameta-unofficial --edge
 ```
