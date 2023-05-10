@@ -10,11 +10,18 @@ Hatton, John, Gary Holton, Mandana Seyfeddinipur, Nick Thieberger. 2021. Lameta 
 
 ## Installation
 
-Until a stable build is published, you can install the "edge" build for testing using a terminal:
+Until a stable build is published, you can install the most recent "edge" (alpha) or beta releases using a terminal.
+
+### beta release
+```bash
+snap install lameta-unofficial --beta
+# or you might need to use sudo privileges:
+sudo snap install lameta-unofficial --beta
+```
+
+### alpha release
 ```bash
 snap install lameta-unofficial --edge
-```
-If you get an error, it might be that you need to use sudo privileges:
-```bash
+# or
 sudo snap install lameta-unofficial --edge
 ```
