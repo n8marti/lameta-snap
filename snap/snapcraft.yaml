@@ -81,7 +81,8 @@ parts:
       npm install --location=global yarn
       yarn install
       # Build app.
-      npm run build-without-test
+      # npm run build-without-test # script no longer in package.json
+      npm run build
       ./node_modules/.bin/electron-builder --linux dir
 
       # Copy over the linux-unpacked directory contents.
