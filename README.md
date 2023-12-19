@@ -1,5 +1,7 @@
 # laMETA snap package
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/lameta-unofficial)
+
 This repository provides an UNOFFICIAL build of laMETA to Canonical's [Snap Store](https://snapcraft.io).
 
 Lameta is mainly aimed at collections made in the course of documenting language, music, and other cultural expressions.
