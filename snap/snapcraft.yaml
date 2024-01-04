@@ -1,7 +1,7 @@
 name: lameta-unofficial
 title: laMETA
 license: MIT
-version: "v2.2.1-alpha"
+version: "v2.2.2-alpha"
 base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
@@ -81,7 +81,6 @@ parts:
       npm install --location=global yarn
       yarn install
       # Build app.
-      # npm run build-without-test # script no longer in package.json
       npm run build
       ./node_modules/.bin/electron-builder --linux dir
 
