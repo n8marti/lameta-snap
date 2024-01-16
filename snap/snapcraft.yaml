@@ -79,7 +79,7 @@ parts:
 
       # Install yarn & packages.
       npm install --location=global yarn
-      yarn install
+      yarn install --frozen-lockfile
       # Build app.
       npm run build
       ./node_modules/.bin/electron-builder --linux dir
