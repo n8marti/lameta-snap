@@ -1,7 +1,7 @@
 name: lameta-unofficial
 title: laMETA
 license: MIT
-version: "v2.2.3-alpha"
+version: "v2.2.4-alpha"
 base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
@@ -52,8 +52,8 @@ parts:
     plugin: dump
     build-packages:
       - curl
-    build-snaps:
-      - node/16/stable
+    # build-snaps:
+    #   - node/16/stable
     build-environment:
       - NODE_ENV: "production"
     override-build: |
@@ -77,9 +77,14 @@ parts:
       echo -e "httpProxy: \"$http_proxy\"" >> .yarnrc.yml
       echo -e "httpsProxy: \"$http_proxy\"" >> .yarnrc.yml
 
-      # Install yarn & packages.
-      npm install --location=global yarn
-      yarn install --frozen-lockfile
+      # Install volta for managing yarn & packages.
+      # https://docs.volta.sh/guide/getting-started
+      curl https://get.volta.sh | bash
+      $VOLTA_HOME=$HOME/.volta
+      PATH=$VOLTA_HOME/bin:$PATH
+      volta install
+      # npm install --location=global yarn
+      # yarn install --frozen-lockfile
       # Build app.
       npm run build
       ./node_modules/.bin/electron-builder --linux dir
