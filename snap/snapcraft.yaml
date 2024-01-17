@@ -64,8 +64,8 @@ parts:
       # Install volta for managing node, npm, yarn, & packages.
       # https://docs.volta.sh/guide/getting-started
       curl https://get.volta.sh | bash
-      VOLTA_HOME=$HOME/.volta
-      PATH=$VOLTA_HOME/bin:$PATH
+      export VOLTA_HOME=$HOME/.volta
+      export PATH=$VOLTA_HOME/bin:$PATH
       volta install node
       volta install npm
 
