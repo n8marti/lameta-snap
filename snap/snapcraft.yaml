@@ -65,7 +65,9 @@ parts:
       export VOLTA_HOME=$HOME/.volta
       export PATH=$VOLTA_HOME/bin:$PATH
       volta install node
+      node --version
       volta install npm
+      npm --version
 
       # Bugfix: https://forum.snapcraft.io/t/problems-with-remote-build/24373/2
       if [ -z ${http_proxy+x} ]; then
@@ -86,6 +88,7 @@ parts:
 
       # Install packages & build.
       volta install yarn
+      yarn --version
       yarn install --immutable
       # Build app.
       npm run build
