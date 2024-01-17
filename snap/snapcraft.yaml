@@ -52,8 +52,6 @@ parts:
     plugin: dump
     build-packages:
       - curl
-    # build-snaps:
-    #   - node/16/stable
     build-environment:
       - NODE_ENV: "production"
     override-build: |
@@ -87,7 +85,6 @@ parts:
       echo -e "httpsProxy: \"$http_proxy\"" >> .yarnrc.yml
 
       # Install packages & build.
-      # npm install --location=global yarn
       volta install yarn
       yarn install --frozen-lockfile
       # Build app.
