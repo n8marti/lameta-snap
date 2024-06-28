@@ -52,8 +52,8 @@ parts:
     plugin: dump
     build-packages:
       - curl
-    build-environment:
-      - NODE_ENV: "production"
+    # build-environment:
+    #   - NODE_ENV: "production"
     override-build: |
       # Ref:
       # - https://forum.snapcraft.io/t/how-to-delegate-package-creation-in-snapcraft-yaml-to-electron-builder/28097/10
