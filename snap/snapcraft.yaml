@@ -38,6 +38,7 @@ apps:
       - network
       - removable-media
       - shmem
+      - system-observe  # snappy-debug
       # - udisks2
       - wayland
       - x11
@@ -100,5 +101,4 @@ parts:
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
       cp -ar ./release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/opt/lameta/
     stage-packages:
-      - libcanberra-gtk-module
       - rsync
