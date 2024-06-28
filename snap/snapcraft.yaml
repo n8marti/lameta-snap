@@ -29,7 +29,7 @@ apps:
     plugs:
       - audio-playback
       # - browser-support
-      # - dbus
+      - dbus
       - desktop
       - desktop-legacy
       - home
