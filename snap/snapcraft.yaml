@@ -89,7 +89,8 @@ parts:
       # Install packages & build.
       volta install yarn
       yarn --version
-      yarn install --immutable
+      # yarn install --immutable
+      yarn install --frozen-lockfile
       # Build app.
       npm run build
       ./node_modules/.bin/electron-builder --linux dir
