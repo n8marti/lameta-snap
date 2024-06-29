@@ -52,8 +52,9 @@ parts:
     plugin: dump
     build-packages:
       - curl
-    # build-environment:
-    #   - NODE_ENV: "production"
+    build-environment:
+      # - NODE_ENV: "production"
+      - PATH: "$PATH:$SNAPCRAFT_PART_BUILD/node_modules/.bin"
     override-build: |
       # Ref:
       # - https://forum.snapcraft.io/t/how-to-delegate-package-creation-in-snapcraft-yaml-to-electron-builder/28097/10
@@ -95,10 +96,9 @@ parts:
 
       # Build app.
       npm run build
-      # ./node_modules/.bin/electron-builder --linux dir
-      ./node_modules/.bin/electron-packager . lameta --overwrite \
-        --platform=linux --output=release-build --prune=true \
-        --out $SNAPCRAFT_PART_INSTALL/
+      # electron-builder --linux dir
+      electron-packager . lameta --overwrite --platform=linux \
+        --output=release-build --prune=true --out $SNAPCRAFT_PART_INSTALL/
 
       # Copy over the linux-unpacked directory contents.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
@@ -107,3 +107,10 @@ parts:
         $SNAPCRAFT_PART_INSTALL/opt/lameta/
     stage-packages:
       - rsync
+
+  cleanup:
+    after: [gnome/sdk]
+    plugin: nil
+    override-prime:
+      set -eux
+      find $SNAPCRAFT_PRIME/ -type d -name 'gtk-2.0' -delete
