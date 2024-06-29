@@ -96,7 +96,6 @@ parts:
       # Build app.
       npm run build
       # ./node_modules/.bin/electron-builder --linux dir
-      ls -l ./node_modules/.bin
       ./node_modules/.bin/electron-packager . $SNAPCRAFT_PROJECT_NAME --overwrite \
         --platform=linux --output=release-build --prune=true \
         --out $SNAPCRAFT_PART_INSTALL/
