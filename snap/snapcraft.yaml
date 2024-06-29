@@ -91,10 +91,12 @@ parts:
       yarn --version
       # yarn install --immutable
       yarn install --frozen-lockfile
+      npm install --save-dev @electron/packager
+
       # Build app.
       npm run build
       # ./node_modules/.bin/electron-builder --linux dir
-      ./node_modules/.bin/electron-packager . --overwrite --platform=linux \
+      yarn @electron/packager . lameta --overwrite --platform=linux \
         --output=release-build --prune=true --out $SNAPCRAFT_PART_INSTALL/
 
       # Copy over the linux-unpacked directory contents.
