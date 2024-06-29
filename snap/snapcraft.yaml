@@ -96,14 +96,14 @@ parts:
       # Build app.
       npm run build
       # ./node_modules/.bin/electron-builder --linux dir
-      ./node_modules/.bin/electron-packager . $SNAPCRAFT_PROJECT_NAME --overwrite \
+      ./node_modules/.bin/electron-packager . lameta --overwrite \
         --platform=linux --output=release-build --prune=true \
         --out $SNAPCRAFT_PART_INSTALL/
 
       # Copy over the linux-unpacked directory contents.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
       #cp -ar ./release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/opt/lameta/
-      mv $SNAPCRAFT_PART_INSTALL/$SNAPCRAFT_PROJECT_NAME-linux-*/* \
+      mv $SNAPCRAFT_PART_INSTALL/lameta-linux-*/* \
         $SNAPCRAFT_PART_INSTALL/opt/lameta/
     stage-packages:
       - rsync
