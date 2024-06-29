@@ -111,6 +111,6 @@ parts:
   cleanup:
     after: [gnome/sdk]
     plugin: nil
-    override-prime:
+    override-prime: |
       set -eux
       find $SNAPCRAFT_PRIME/ -type d -name 'gtk-2.0' -delete
