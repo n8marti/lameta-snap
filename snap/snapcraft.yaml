@@ -106,8 +106,8 @@ parts:
       mv $SNAPCRAFT_PART_INSTALL/lameta-linux-*/* \
         $SNAPCRAFT_PART_INSTALL/opt/lameta/
       # FIXME: Copy assets folder to expected location.
-      cp -ar $SNAP_PART_INSTALL/opt/lameta/resources/app/assets \
-        $SNAP_PART_INSTALL/opt/lameta/resources/app/dist
+      cp -ar $SNAPCRAFT_PART_INSTALL/opt/lameta/resources/app/assets \
+        $SNAPCRAFT_PART_INSTALL/opt/lameta/resources/app/dist
     stage-packages:
       - rsync
 
