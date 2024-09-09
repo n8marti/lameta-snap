@@ -105,6 +105,14 @@ parts:
       electron-packager . lameta --overwrite --platform=linux \
         --output=release-build --prune=true --out $SNAPCRAFT_PART_INSTALL/
 
+      # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin'
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32'
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32'
+      find $SNAPCRAFT_PART_INSTALL -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
+      find $SNAPCRAFT_PART_INSTALL -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
+      find $SNAPCRAFT_PART_INSTALL -type d -wholename '*/bin/win32' -exec rm -rf {} \;
+
       # Move the output directory contents into proper place.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
       mv $SNAPCRAFT_PART_INSTALL/lameta-linux-*/* \
@@ -116,15 +124,15 @@ parts:
     stage-packages:
       - rsync
 
-  cleanup:
-    after: [gnome/sdk]
-    plugin: nil
-    override-prime: |
-      set -eux
-      # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin'
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32'
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32'
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
-      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32' -exec rm -rf {} \;
+  # cleanup:
+  #   after: [gnome/sdk]
+  #   plugin: nil
+  #   override-prime: |
+  #     set -eux
+  #     # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin'
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32'
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32'
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
+  #     find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32' -exec rm -rf {} \;
