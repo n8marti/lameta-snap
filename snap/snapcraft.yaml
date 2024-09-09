@@ -98,6 +98,8 @@ parts:
       # NOTE: electron-builder is not used due to compatibility issues, so some
       # tweaking has to be done to make the install path system-agnostic and to
       # ensure that the built package matches what electron-builder does.
+      # See also:
+      # - https://stackoverflow.com/questions/37113815/electron-builder-vs-electron-packager
       npm run build
       # electron-builder --linux dir
       electron-packager . lameta --overwrite --platform=linux \
@@ -120,6 +122,9 @@ parts:
     override-prime: |
       set -eux
       # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
-      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
-      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
-      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/win32' -exec rm -rf {} \;
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin'
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32'
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32'
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
+      find $SNAPCRAFT_PRIME -type d -wholename '*/bin/win32' -exec rm -rf {} \;
