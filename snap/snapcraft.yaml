@@ -121,6 +121,7 @@ parts:
     plugin: nil
     override-prime: |
       set -eux
+      find -L $SNAPCRAFT_PRIME -name node_modules
       node_modules="$SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules"
       ls -l "$node_modules"
 
