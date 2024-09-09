@@ -87,7 +87,7 @@ parts:
       echo -e "httpProxy: \"$http_proxy\"" >> .yarnrc.yml
       echo -e "httpsProxy: \"$http_proxy\"" >> .yarnrc.yml
 
-      # Install packages & build.
+      # Install electron packages.
       volta install yarn
       yarn --version
       # yarn install --immutable
@@ -95,26 +95,31 @@ parts:
       npm install --save-dev --legacy-peer-deps @electron/packager
 
       # Build app.
+      # NOTE: electron-builder is not used due to compatibility issues, so some
+      # tweaking has to be done to make the install path system-agnostic and to
+      # ensure that the built package matches what electron-builder does.
       npm run build
       # electron-builder --linux dir
       electron-packager . lameta --overwrite --platform=linux \
         --output=release-build --prune=true --out $SNAPCRAFT_PART_INSTALL/
 
-      # Copy over the linux-unpacked directory contents.
+      # Move the output directory contents into proper place.
       mkdir -p $SNAPCRAFT_PART_INSTALL/opt/lameta
-      #cp -ar ./release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/opt/lameta/
       mv $SNAPCRAFT_PART_INSTALL/lameta-linux-*/* \
         $SNAPCRAFT_PART_INSTALL/opt/lameta/
-      # FIXME: Copy assets folder to expected location.
-      cp -ar $SNAPCRAFT_PART_INSTALL/opt/lameta/resources/app/assets \
+      rmdir $SNAPCRAFT_PART_INSTALL/lameta-linux-*
+      # Move assets folder to updated location based on electron-builder.json5.
+      mv $SNAPCRAFT_PART_INSTALL/opt/lameta/resources/app/assets \
         $SNAPCRAFT_PART_INSTALL/opt/lameta/resources/app/dist
     stage-packages:
       - rsync
 
-  # cleanup:
-  #   after: [gnome/sdk]
-  #   plugin: nil
-  #   override-prime: |
-  #     set -eux
-  #     find $SNAPCRAFT_PRIME/ -type d
-  #     find $SNAPCRAFT_PRIME/ -type d -name 'gtk-2.0' -delete
+  cleanup:
+    after: [gnome/sdk]
+    plugin: nil
+    override-prime: |
+      set -eux
+      # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
+      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/darwin' -exec rm -rf {} \;
+      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/linux/ia32' -exec rm -rf {} \;
+      find $SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules/ -type d -wholename '*/bin/win32' -exec rm -rf {} \;
