@@ -105,13 +105,16 @@ parts:
       #cp -ar ./release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/opt/lameta/
       mv $SNAPCRAFT_PART_INSTALL/lameta-linux-*/* \
         $SNAPCRAFT_PART_INSTALL/opt/lameta/
+      # FIXME: Copy assets folder to expected location.
+      cp -ar $SNAP_PART_INSTALL/opt/lameta/resources/app/assets \
+        $SNAP_PART_INSTALL/opt/lameta/resources/app/dist
     stage-packages:
       - rsync
 
-  cleanup:
-    after: [gnome/sdk]
-    plugin: nil
-    override-prime: |
-      set -eux
-      find $SNAPCRAFT_PRIME/ -type d
-      find $SNAPCRAFT_PRIME/ -type d -name 'gtk-2.0' -delete
+  # cleanup:
+  #   after: [gnome/sdk]
+  #   plugin: nil
+  #   override-prime: |
+  #     set -eux
+  #     find $SNAPCRAFT_PRIME/ -type d
+  #     find $SNAPCRAFT_PRIME/ -type d -name 'gtk-2.0' -delete
