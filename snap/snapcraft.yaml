@@ -123,9 +123,7 @@ parts:
     plugin: nil
     override-prime: |
       set -eux
-      # find -L $SNAPCRAFT_PROJECT_DIR -type d -wholename '*/app/node_modules/f*'
       node_modules="$SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules"
-      ls -l "$node_modules"
 
       # Reduce snap size by removing unneeded node modules.
       # See also:
@@ -135,10 +133,13 @@ parts:
       rm -rf "$node_modules/xlsx"
       rm -rf "$node_modules/trie-search"
       # Reduce snap size by removing ffprobe binaries for mac, win, & 32-bit linux
-      rm -f "$node_modules/ffmpeg-static/bin/darwin/x64/ffprobe"
-      rm -f "$node_modules/ffmpeg-static/bin/darwin/arm64/ffprobe"
-      rm -f "$node_modules/ffmpeg-static/bin/linux/ia32/ffprobe"
-      rm -f "$node_modules/ffmpeg-static/bin/win32/ia32/ffprobe"
-      rm -f "$node_modules/ffmpeg-static/bin/win32/x64/ffprobe"
+      rm -rf "$node_modules/ffprobe-static/bin/darwin"
+      rm -rf "$node_modules/ffprobe-static/bin/linux/ia32"
+      rm -rf "$node_modules/ffprobe-static/bin/win32"
+      # rm -f "$node_modules/ffprobe-static/bin/darwin/x64/ffprobe"
+      # rm -f "$node_modules/ffprobe-static/bin/darwin/arm64/ffprobe"
+      # rm -f "$node_modules/ffprobe-static/bin/linux/ia32/ffprobe"
+      # rm -f "$node_modules/ffprobe-static/bin/win32/ia32/ffprobe"
+      # rm -f "$node_modules/ffprobe-static/bin/win32/x64/ffprobe"
       # Remove all empty directories.
       find $SNAPCRAFT_PRIME -empty -type d -delete
