@@ -117,11 +117,13 @@ parts:
       - rsync
 
   cleanup:
-    after: [gnome/sdk]
+    after:
+      - gnome/sdk
+      - lameta
     plugin: nil
     override-prime: |
       set -eux
-      find -L $SNAPCRAFT_PROJECT_DIR -name node_modules
+      # find -L $SNAPCRAFT_PROJECT_DIR -type d -wholename '*/app/node_modules/f*'
       node_modules="$SNAPCRAFT_PRIME/opt/lameta/resources/app/node_modules"
       ls -l "$node_modules"
 
