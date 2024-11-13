@@ -12,8 +12,8 @@ description: |
   Lameta greatly simplifies management of collections and makes the archiving process straightforward and painless for field workers. 
 
   Hatton, John, Gary Holton, Mandana Seyfeddinipur, Nick Thieberger. 2021. Lameta [software] https://github.com/onset/laMETA/releases
-contact: https://github.com/n8marti/lameta-snap/issues
-issues: https://github.com/n8marti/lameta-snap/issues
+contact: https://github.com/wasta-linux/lameta-snap/issues
+issues: https://github.com/wasta-linux/lameta-snap/issues
 source-code: https://github.com/onset/lameta/releases
 grade: stable # devel
 confinement: strict # devmode
