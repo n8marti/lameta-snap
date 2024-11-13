@@ -20,8 +20,9 @@ confinement: strict # devmode
 icon: snap/gui/lameta-unofficial.png
 compression: lzo
 architectures:
-  - amd64 # consider also "arm64", but included ffmpeg libs would need to be modified
-  - arm64
+  # Ref: https://snapcraft.io/docs/architectures
+  - build-on: [amd64] # consider also "arm64", but included ffmpeg libs would need to be modified
+  - build-on: [arm64]
 
 apps:
   lameta-unofficial:
