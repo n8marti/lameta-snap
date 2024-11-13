@@ -21,6 +21,7 @@ icon: snap/gui/lameta-unofficial.png
 compression: lzo
 architectures:
   - amd64 # consider also "arm64", but included ffmpeg libs would need to be modified
+  - arm64
 
 apps:
   lameta-unofficial:
