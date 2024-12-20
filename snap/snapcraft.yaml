@@ -31,7 +31,8 @@ apps:
     plugs:
       - audio-playback
       - autopilot-introspection  # snappy-debug
-      # - browser-support
+      - bluez  # bluetooth
+      - browser-support
       # - dbus
       - home
       # - mount-observe
