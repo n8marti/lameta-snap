@@ -1,7 +1,7 @@
 name: lameta-unofficial
 title: laMETA
 license: MIT
-version: "v2.3.10-beta"  # matches release tag from source repo
+version: "v2.3.14-beta"  # matches release tag from source repo
 base: core22
 summary: Lameta is a metadata tool to help with organising collections of files.
 description: |
